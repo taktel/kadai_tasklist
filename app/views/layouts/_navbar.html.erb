@@ -14,7 +14,14 @@
       
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to  '新規タスクの作成', new_task_path %></li>
+          <% if logged_in? %>
+            <li><%= link_to current_user.name, user_path(current_user) %></li>
+            <li><%= link_to 'Logout', logout_path, method: :delete %></li>
+            <li><%= link_to  '新規タスクの作成', new_task_path %></li>
+          <% else %>
+            <li><%= link_to 'Signup', signup_path %></li>
+            <li><%= link_to 'Login', login_path %></li>
+          <% end %>
         </ul>
       </div>
       
